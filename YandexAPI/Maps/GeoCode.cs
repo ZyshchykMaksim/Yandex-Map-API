@@ -24,7 +24,7 @@ namespace YandexAPI.Maps
         public static string SearchObject(string address)
         {
             string urlXml = String.Format(_uri, address);
-            string result = Request.Get(urlXml);
+            string result = YandexMaps.Get(urlXml);
             return result;
         }
 
@@ -37,25 +37,11 @@ namespace YandexAPI.Maps
         public static string SearchObject(double latitude, double longitude)
         {
             string urlXml = String.Format(_uri, String.Format("{0},{1}", latitude.ToString(CultureInfo.InvariantCulture).Replace(",", "."), longitude.ToString(CultureInfo.InvariantCulture).Replace(",", ".")));
-            string result = Request.Get(urlXml);
+            string result = YandexMaps.Get(urlXml);
             return result;
         }
 
-        /// <summary>
-        /// Возвращает URL на статический рисунок карты с точкой поиска в центре
-        /// </summary>
-        /// <param name="resultSearchObject">XML резудьтат поиска</param>
-        /// <param name="zPosition">Может быть от 1 до 17</param>
-        /// <param name="width">Ширина. Может быть от 1 до 650</param>
-        /// <param name="height">Высота. Может быть от 1 до 450</param>
-        /// <returns>Url на Image</returns>
-        public static string GetUrlMapImage(string resultSearchObject, int zPosition, int width, int height)
-        {
-            string point = GetPoint(resultSearchObject);
-            return String.Format("http://static-maps.yandex.ru/1.x/?ll={0}&size={1},{2}&z={3}&l=map&pt={0},pm2lbm&lang=ru-RU", point, width, height, zPosition);
-        }
-
-        public static string GetPoint(string resultSearchObject)
+        private static string GetStrPointD(string resultSearchObject)
         {
             string point = String.Empty;
             XmlDocument xd = new XmlDocument();
@@ -75,20 +61,57 @@ namespace YandexAPI.Maps
             return point;
         }
 
+
+        public static Address GetAddress(string resultSearchObject)
+        {
+            Address address = null;
+            XmlDocument xd = new XmlDocument();
+            xd.LoadXml(resultSearchObject);
+            XmlNodeList geoObjectTemp = xd.GetElementsByTagName("Country");
+            foreach (XmlNode node in geoObjectTemp)
+            {
+                address = new Address();
+                foreach (XmlNode item in node.ChildNodes)
+                {
+                    if (item.Name.Equals("AddressLine"))
+                    {
+                        address.AddressLine = item.LastChild.InnerText;
+                        continue;
+                    }
+
+                    if (item.Name.Equals("CountryNameCode"))
+                    {
+                        address.CountryNameCode = item.LastChild.InnerText;
+                        continue;
+                    }
+
+                    if (item.Name.Equals("CountryName"))
+                        address.CountryName = item.LastChild.InnerText;
+                }
+                break;
+            }
+            return address;
+        }
+
+
         public static PointD GetPointD(string resultSearchObject)
         {
-            PointD result = new PointD(GetPoint(resultSearchObject));
+            PointD result = new PointD(GetStrPointD(resultSearchObject));
             return result;
         }
 
         /// <summary>
-        /// Метод для скачивания Image из интернета
+        /// Возвращает URL на статический рисунок карты с точкой поиска в центре
         /// </summary>
-        /// <param name="uri">URL скачиваемой Image</param>
-        /// <returns>Возвращаем объект Image</returns>
-        public static Image DownloadMapImage(string uri)
+        /// <param name="resultSearchObject">XML резудьтат поиска</param>
+        /// <param name="zPosition">Может быть от 1 до 17</param>
+        /// <param name="width">Ширина. Может быть от 1 до 650</param>
+        /// <param name="height">Высота. Может быть от 1 до 450</param>
+        /// <returns>Url на Image</returns>
+        public static string GetUrlMapImage(string resultSearchObject, int zPosition, int width, int height)
         {
-            return DownloadMapImage(uri, null);
+            string point = GetStrPointD(resultSearchObject);
+            return String.Format("http://static-maps.yandex.ru/1.x/?ll={0}&size={1},{2}&z={3}&l=map&pt={0},pm2lbm&lang=ru-RU", point, width, height, zPosition);
         }
 
         /// <summary>
@@ -97,7 +120,7 @@ namespace YandexAPI.Maps
         /// <param name="uri">URL скачиваемой Image</param>
         /// <param name="proxy">Передаем Proxy для подключения</param>
         /// <returns>Возвращаем объект Image</returns>
-        public static Image DownloadMapImage(string uri, WebProxy proxy)
+        public static Image DownloadMapImage(string uri, WebProxy proxy = null)
         {
             Image tmpImage = null;
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);

@@ -55,7 +55,7 @@ namespace SampleYandexAPI
             #region Get Point
 
             string resultSearchObject = GeoCode.SearchObject("Алматы, ул.Айтиева, 42");
-            string result = GeoCode.GetPoint(resultSearchObject);
+            string result = GeoCode.GetPointD(resultSearchObject).ToString();
 
             Console.WriteLine(result);
             Console.ReadLine();
@@ -133,7 +133,7 @@ namespace SampleYandexAPI
             #endregion IsInPolygon
 
             #region GetIdPolygonOwnerPoint
-            
+
             //string ResultSearchObject = GeoCode.SearchObject("Алматы, ул.Айтиева, 42");
             //PointD MainPoint = GeoCode.GetPointD(ResultSearchObject);
 

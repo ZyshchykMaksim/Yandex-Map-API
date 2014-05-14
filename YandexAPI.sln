@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleYandexAPI", "SampleYandexAPI\SampleYandexAPI.csproj", "{8DB31967-D117-425E-979B-F5BAACE69988}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandexAPI", "YandexAPI\YandexAPI.csproj", "{FFC34E3D-8BD0-48F1-8D2B-5474179FCB79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleYandexAPI", "SampleYandexAPI\SampleYandexAPI.csproj", "{8DB31967-D117-425E-979B-F5BAACE69988}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandexAPIGetAddress", "YandexAPIGetAddress\YandexAPIGetAddress.csproj", "{F3AC00A0-4C1B-430F-8AFA-BEC99279562D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandexAPIGetСoordinates", "YandexAPIGetСoordinates\YandexAPIGetСoordinates.csproj", "{1A82019B-34BD-4609-912B-E3036C6503C3}"
 EndProject
@@ -13,14 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FFC34E3D-8BD0-48F1-8D2B-5474179FCB79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFC34E3D-8BD0-48F1-8D2B-5474179FCB79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFC34E3D-8BD0-48F1-8D2B-5474179FCB79}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FFC34E3D-8BD0-48F1-8D2B-5474179FCB79}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8DB31967-D117-425E-979B-F5BAACE69988}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8DB31967-D117-425E-979B-F5BAACE69988}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DB31967-D117-425E-979B-F5BAACE69988}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DB31967-D117-425E-979B-F5BAACE69988}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFC34E3D-8BD0-48F1-8D2B-5474179FCB79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFC34E3D-8BD0-48F1-8D2B-5474179FCB79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFC34E3D-8BD0-48F1-8D2B-5474179FCB79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFC34E3D-8BD0-48F1-8D2B-5474179FCB79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3AC00A0-4C1B-430F-8AFA-BEC99279562D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3AC00A0-4C1B-430F-8AFA-BEC99279562D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3AC00A0-4C1B-430F-8AFA-BEC99279562D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3AC00A0-4C1B-430F-8AFA-BEC99279562D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1A82019B-34BD-4609-912B-E3036C6503C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1A82019B-34BD-4609-912B-E3036C6503C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A82019B-34BD-4609-912B-E3036C6503C3}.Release|Any CPU.ActiveCfg = Release|Any CPU

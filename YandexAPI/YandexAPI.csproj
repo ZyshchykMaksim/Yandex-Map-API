@@ -41,10 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Maps\GeoCode.cs" />
+    <Compile Include="Maps\Model\Address.cs" />
     <Compile Include="Maps\PolygonMap.cs" />
-    <Compile Include="Maps\PointD.cs" />
+    <Compile Include="Maps\Model\PointD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Request.cs" />
+    <Compile Include="YandexMaps.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
